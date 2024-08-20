@@ -9,12 +9,12 @@
 Решение:</summary>
 
 ``` 
-select SUM(manufacturers.capitalization) as summa, c.name as country
-from manufacturers
-join countries c on c.id = manufacturers country_id
-group by c.name
-order by summa desc
-limit 1;
+SELECT SUM(manufacturers.capitalization) AS summa, c.name AS country
+FROM manufacturers
+JOIN countries c ON c.id = manufacturers country_id
+GROUP BY c.name
+ORDER BY summa desc
+LIMIT 1;
 ```
 </details>
 
@@ -26,14 +26,12 @@ limit 1;
 Решение:</summary>
 
 ``` 
-select m.name as "Имя производителя", models.name as "Имя модели", p.value as
-"Цена",
-q.count as "Остаток", c.name as "Страна производства"
-from models
-join manufacturers m on models.manufacturer_id = m.id
-join prices p on models.price_id = p.id
-join quantity q on models.id = q.model_id
-join countries c on c.id = m.country_id;
+SELECT m.name AS "Имя производителя", models.name AS "Имя модели", p.value AS "Цена", q.count AS "Остаток", c.name AS "Страна производства"
+FROM models
+JOIN manufacturers m ON models.manufacturer_id = m.id
+JOIN prices p ON models.price_id = p.id
+JOIN quantity q ON models.id = q.model_id
+JOIN countries c ON c.id = m.country_id;
 
 ```
 </details>
@@ -46,11 +44,11 @@ join countries c on c.id = m.country_id;
 Решение:</summary>
 
 ``` 
-select models.name, s.first_name, s.last_name
-from models
-join sellers s on models.seller_id = s.id
-join offices o on s.office_id = o.id
-where o.name = 'Laconia';
+SELECT models.name, s.first_name, s.last_name
+FROM models
+JOIN sellers s ON models.seller_id = s.id
+JOIN offices o ON s.office_id = o.id
+WHERE o.name = 'Laconia';
 ```
 </details>
 
@@ -62,9 +60,9 @@ where o.name = 'Laconia';
 Решение:</summary>
 
 ``` 
-select models.name
-from models
-where instock = true;
+SELECT models.name
+FROM models
+WHERE instock = true;
 ```
 </details>
 
@@ -76,10 +74,10 @@ where instock = true;
 Решение:</summary>
 
 ``` 
-select AVG(p.value)
-from models
-join prices p on p.id = models.price_id
-where models.instock = true;
+SELECT AVG(p.value)
+FROM models
+JOIN prices p ON p.id = models.price_id
+WHERE models.instock = true;
 ```
 </details>
 
@@ -91,11 +89,11 @@ where models.instock = true;
 Решение:</summary>
 
 ``` 
-select SUM(p.value)
-from models
-join manufacturers m on m.id = models.manufacturer_id
-join prices p on p.id = models.price_id
-where m.name = 'Horch';
+SELECT SUM(p.value)
+FROM models
+JOIN manufacturers m ON m.id = models.manufacturer_id
+JOIN prices p ON p.id = models.price_id
+WHERE m.name = 'Horch';
 ```
 </details>
 
